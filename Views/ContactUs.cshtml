@@ -1,0 +1,35 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.ContactUs>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "Master.cshtml";
+}
+
+
+<!-- contact section -->
+
+<section class="contact_section layout_padding">
+  <div class="container">
+    <div class="heading_container">
+      <h2>
+        Contact Us
+      </h2>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+          @using Umbraco.Forms.Web
+          @Html.RenderUmbracoFormDependencies(Url)
+        @await Umbraco.RenderMacroAsync("renderUmbracoForm", new {FormGuid="7e134b9d-e986-4def-aaae-8078fa7a2d3e", FormTheme="bootstrap3-horizontal", ExcludeScripts="0", RedirectToPageId=""})
+      </div>
+      <div class="col-md-6">
+        <div class="map_container">
+          <div class="map">
+            <div id="googleMap" style="width:100%;height:100%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- end contact section -->
