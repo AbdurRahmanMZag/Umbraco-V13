@@ -13,57 +13,39 @@
       <h2> Our Services </h2>
     </div>
     <div class="row">
-      <div class="col-sm-6 col-md-4 mx-auto">
-        <div class="box ">
+        @using Umbraco.Cms.Core.Models;
+        
+@{
+	var selection = Umbraco.Content(Guid.Parse("1af4bd5b-0831-468d-abc1-520879de7cb8"))
+    .Children()
+    .Where(x => x.IsVisible());
+}
+
+	@foreach (var item in selection)
+	{
+		var image = item.Value<MediaWithCrops>("serviceIcon");
+		var subHeader = item.Value("serviceDescription");
+	 <a href="@item.Url()" class="col-sm-6 col-md-4 mx-auto">
+         <div class="box ">
           <div class="img-box">
-            <img src="images/s1.png" alt="" />
+              @if(image != null ){
+            <img src="@image.MediaUrl()" alt="" />
+            }
           </div>
           <div class="detail-box">
             <h5>
-              Maintenance
+              @item.Name()
             </h5>
             <p>
-              when looking at its layout. The point of using Lorem Ipsum is
-              that it has a more-or-less normal
+              @subHeader
             </p>
           </div>
         </div>
-      </div>
-      <div class="col-sm-6 col-md-4 mx-auto">
-        <div class="box ">
-          <div class="img-box">
-            <img src="images/s2.png" alt="" />
-          </div>
-          <div class="detail-box">
-            <h5>
-              Electrical
-            </h5>
-            <p>
-              when looking at its layout. The point of using Lorem Ipsum is
-              that it has a more-or-less normal
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6 col-md-4 mx-auto">
-        <div class="box ">
-          <div class="img-box">
-            <img src="images/s3.png" alt="" />
-          </div>
-          <div class="detail-box">
-            <h5>
-              Plumbing
-            </h5>
-            <p>
-              when looking at its layout. The point of using Lorem Ipsum is
-              that it has a more-or-less normal
-            </p>
-          </div>
-        </div>
-      </div>
+      </a>
+	}
     </div>
     <div class="btn-box">
-      <a href="">
+      <a href="/services/">
         View More
       </a>
     </div>

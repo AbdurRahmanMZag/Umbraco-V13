@@ -1,14 +1,10 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.About>
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.SingleService>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 @{
 	Layout = "Master.cshtml";
 }
 
-
-
-
-<!-- about section -->
 
 <section class="about_section layout_padding">
   <div class="container">
@@ -28,19 +24,17 @@
         <div class="img-box">
         @using Umbraco.Cms.Core.Models
         @{
-            var MediaPicker = Model.Value<MediaWithCrops>("aboutImage");
+            var MediaPicker = Model.Value<MediaWithCrops>("serviceIcon");
             if( MediaPicker != null)
             {
-                <img src="@MediaPicker.MediaUrl()"/>
+                <img src="@MediaPicker.MediaUrl()" style="width: 50%;"/>
             }
         }
         </div>
       </div>
       <div>
-            @Model.Value("aboutBody")
+            @Model.Value("serviceDescription")
       </div>
     </div>
   </div>
 </section>
-
-<!-- end about section -->

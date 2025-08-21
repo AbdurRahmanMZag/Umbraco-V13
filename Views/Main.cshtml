@@ -152,57 +152,39 @@
         <h2> Our Services </h2>
       </div>
       <div class="row">
-        <div class="col-sm-6 col-md-4 mx-auto">
-          <div class="box ">
-            <div class="img-box">
-              <img src="images/s1.png" alt="" />
-            </div>
-            <div class="detail-box">
-              <h5>
-                Maintenance
-              </h5>
-              <p>
-                when looking at its layout. The point of using Lorem Ipsum is
-                that it has a more-or-less normal
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-4 mx-auto">
-          <div class="box ">
-            <div class="img-box">
-              <img src="images/s2.png" alt="" />
-            </div>
-            <div class="detail-box">
-              <h5>
-                Electrical
-              </h5>
-              <p>
-                when looking at its layout. The point of using Lorem Ipsum is
-                that it has a more-or-less normal
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-4 mx-auto">
-          <div class="box ">
-            <div class="img-box">
-              <img src="images/s3.png" alt="" />
-            </div>
-            <div class="detail-box">
-              <h5>
-                Plumbing
-              </h5>
-              <p>
-                when looking at its layout. The point of using Lorem Ipsum is
-                that it has a more-or-less normal
-              </p>
-            </div>
-          </div>
-        </div>
+        @using Umbraco.Cms.Core.Models;
+        
+            @{
+            	var selection = Umbraco.Content(Guid.Parse("1af4bd5b-0831-468d-abc1-520879de7cb8"))
+                .Children()
+                .Where(x => x.IsVisible());
+            }
+            
+            	@foreach (var item in selection)
+            	{
+            		var image = item.Value<MediaWithCrops>("serviceIcon");
+            		var subHeader = item.Value("serviceDescription");
+            	 <a href="@item.Url()" class="col-sm-6 col-md-4 mx-auto">
+                     <div class="box ">
+                      <div class="img-box">
+                          @if(image != null ){
+                        <img src="@image.MediaUrl()" alt="" />
+                        }
+                      </div>
+                      <div class="detail-box">
+                        <h5>
+                          @item.Name()
+                        </h5>
+                        <p>
+                          @subHeader
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+            	}
       </div>
       <div class="btn-box">
-        <a href="">
+        <a href="/services/">
           View More
         </a>
       </div>
@@ -222,114 +204,53 @@
       </div>
       <div class="carousel-wrap layout_padding2-top ">
         <div class="owl-carousel">
-          <div class="item">
-            <div class="box">
-              <div class="client_id">
-                <div class="img-box">
-                  <img src="images/client-1.jpg" alt="">
-                </div>
-                <div class="client_detail">
-                  <div class="client_info">
-                    <h6>
-                      Jorch morik
-                    </h6>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                  </div>
-                  <i class="fa fa-quote-left" aria-hidden="true"></i>
-                </div>
-              </div>
-              <div class="client_text">
-                <p>
-                  chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="box">
-              <div class="client_id">
-                <div class="img-box">
-                  <img src="images/client-2.jpg" alt="">
-                </div>
-                <div class="client_detail">
-                  <div class="client_info">
-                    <h6>
-                      Jorch morik
-                    </h6>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                  </div>
-                  <i class="fa fa-quote-left" aria-hidden="true"></i>
-                </div>
-              </div>
-              <div class="client_text">
-                <p>
-                  chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="box">
-              <div class="client_id">
-                <div class="img-box">
-                  <img src="images/client-1.jpg" alt="">
-                </div>
-                <div class="client_detail">
-                  <div class="client_info">
-                    <h6>
-                      Jorch morik
-                    </h6>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                  </div>
-                  <i class="fa fa-quote-left" aria-hidden="true"></i>
-                </div>
-              </div>
-              <div class="client_text">
-                <p>
-                  chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="box">
-              <div class="client_id">
-                <div class="img-box">
-                  <img src="images/client-2.jpg" alt="">
-                </div>
-                <div class="client_detail">
-                  <div class="client_info">
-                    <h6>
-                      Jorch morik
-                    </h6>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                  </div>
-                  <i class="fa fa-quote-left" aria-hidden="true"></i>
-                </div>
-              </div>
-              <div class="client_text">
-                <p>
-                  chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum
-                </p>
-              </div>
-            </div>
-          </div>
+            
+            
+            @{
+            	var selectionTwo = Umbraco.Content(Guid.Parse("b50ca0ce-015e-4d90-b117-6cf63f767ccd"))
+                .Children()
+                .Where(x => x.IsVisible());
+            }
+              
+            	@foreach (var item in selectionTwo)
+            	{
+            	    var image = item.Value<MediaWithCrops>("clientImage");
+            	    var name = item.Value("mainHeader");
+            	    var testimonial = item.Value("subHeader");
+            	    var rate = 0;
+            	    int.TryParse(item.Value("clientRate").ToString(), out rate);
+                        <div class="item">
+                        <div class="box">
+                          <div class="client_id">
+                            <div class="img-box">
+                                @if(image != null )
+                                {
+                                  <img src="@image.MediaUrl()" alt="">
+                                }
+                            </div>
+                            <div class="client_detail">
+                              <div class="client_info">
+                                <h6>
+                                  @name
+                                </h6>
+                                @for(int i=0;i<rate;i++)
+                                    {
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    }
+                               
+                              </div>
+                              <i class="fa fa-quote-left" aria-hidden="true"></i>
+                            </div>
+                          </div>
+                          <div class="client_text">
+                            <p>
+                              @testimonial
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+            	}
+        
         </div>
       </div>
     </div>
@@ -342,32 +263,19 @@
   <section class="contact_section layout_padding">
     <div class="container">
       <div class="heading_container">
-        <h2>
-          Contact Us
-        </h2>
       </div>
       <div class="row">
+            
         <div class="col-md-6">
-          <form action="">
-            <div>
-              <input type="text" placeholder="Name" />
-            </div>
-            <div>
-              <input type="text" placeholder="Phone Number" />
-            </div>
-            <div>
-              <input type="email" placeholder="Email" />
-            </div>
-            <div>
-              <input type="text" class="message-box" placeholder="Message" />
-            </div>
-            <div class="d-flex ">
-              <button>
-                SEND
-              </button>
-            </div>
-          </form>
-        </div>
+             <div class="heading_container">
+                  <h2>
+                    Contact Us
+                </h2>   
+             </div>
+              
+            @using Umbraco.Forms.Web
+            @Html.RenderUmbracoFormDependencies(Url)
+            @await Umbraco.RenderMacroAsync("renderUmbracoForm", new {FormGuid="7e134b9d-e986-4def-aaae-8078fa7a2d3e", FormTheme="bootstrap3-horizontal", ExcludeScripts="0", RedirectToPageId=""})        </div>
         <div class="col-md-6">
           <div class="map_container">
             <div class="map">
